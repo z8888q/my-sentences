@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ReplState" timestamp="1470823638044">{:repl-history {:ide [], :local [&quot;(* 2 3 45 67\n   )&quot; &quot;b&quot; &quot;3&quot; &quot;123&quot; &quot;(defn my-fn [a b c]\n  (str a \&quot; \&quot; b \&quot; \&quot; c))&quot; &quot;(defn my-fn [a b c]\n  (str a \&quot; ,\&quot; b \&quot; ,\&quot; c))&quot; &quot;(my-fn 2 3 4)&quot; &quot;(use mycore.app)&quot; &quot;(use 'mycore.app)&quot; &quot;(use '#mycore.app)&quot; &quot;(use #mycore.app)&quot; &quot;(+ 1 2 3 4)&quot; &quot;(use 'myapp.core)&quot; &quot;(authenticated? \&quot;user\&quot; \&quot;pas\&quot;)&quot; &quot;(authenticated? \&quot;user\&quot; \&quot;pass\&quot;)&quot; &quot;(use 'myapp.test)&quot;], :remote []}}</component>
+</project>

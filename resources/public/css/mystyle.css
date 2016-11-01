@@ -1,0 +1,15 @@
+
+.right-top{
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.right{
+    float: right;
+}
+
+.edit-box {
+    display: none;
+    /*background-color: #122b40;*/
+}
