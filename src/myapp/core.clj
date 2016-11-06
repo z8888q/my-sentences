@@ -3,7 +3,8 @@
             [org.httpkit.server :refer [run-server]]
             [compojure.route :as route]
             [myapp.views :as views]
-            [myapp.posts :as posts]
+            ;[myapp.posts :as posts]
+            [myapp.sentences :as sentences]
             [ring.util.response :as resp]
             [ring.middleware.reload :refer [wrap-reload]]
             [ring.middleware.params :refer [wrap-params]]
@@ -20,17 +21,18 @@
 
 (defroutes protected-routes
   (GET "/admin" [] (views/admin-blog-page))
-  (GET "/admin/add" [] (views/add-post))
+  (GET "/admin/add" [] (views/add-sentence))
   (POST "/admin/create" [& params]
-        (do (posts/create params)
+        (do
+          (sentences/create params)
           (resp/redirect "/admin")))
-  (GET "/admin/:id/edit" [id] (views/edit-post id))
+  (GET "/admin/:id/edit" [id] (views/edit-sentence id))
   (POST "/admin/:id/save" [& params]
     (do
-      (posts/save (:id params) params)
+      (sentences/save (:id params) params)
         (resp/redirect "/admin")))
   (GET "/admin/:id/delete" [id]
-    (do (posts/delete id)
+    (do (sentences/delete id)
       (resp/redirect "/admin"))))
 
 (defroutes myapp

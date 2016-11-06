@@ -7,6 +7,11 @@ $(document).ready(function() {
         $(this).parent().next().toggle(400);
     });
 
+    $(".add-sentence-btn").click(function () {
+        $(this).toggle(100);
+        $(this).next().toggle(400);
+    });
+
     $(".edit-title").on("input", function(){
          $(this).parents(".panel-body").first().find("h3").first().html($(this).val());
     });
