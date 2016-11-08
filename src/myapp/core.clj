@@ -6,8 +6,10 @@
             ;[myapp.posts :as posts]
             [myapp.sentences :as sentences]
             [ring.util.response :as resp]
+            [ring.middleware.json :refer [wrap-json-response]]
             [ring.middleware.reload :refer [wrap-reload]]
             [ring.middleware.params :refer [wrap-params]]
+            [clj-json.core :as json]
             [ring.middleware.basic-authentication :refer :all])
   (:gen-class))
 
@@ -15,8 +17,17 @@
   (and (= name "user")
        (= pass "pass")))
 
+(defn json-response [data & [status]]
+  {:status (or status 200)
+   :headers {"Content-Type" "application/json" "Access-Control-Allow-Origin" "*"}
+   :body (json/generate-string data)})
+
 (defroutes public-routes
   (GET "/" [] (views/main-page))
+  (POST "/save_sentence" [& json]
+   (do
+     (sentences/create_by_json json)
+     (json-response {:hello "world"})))
   (route/resources "/"))
 
 (defroutes protected-routes

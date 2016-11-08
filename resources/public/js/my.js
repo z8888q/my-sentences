@@ -16,3 +16,28 @@ $(document).ready(function() {
          $(this).parents(".panel-body").first().find("h3").first().html($(this).val());
     });
 });
+
+function validate_required(field)
+{
+    with (field)
+    {
+        if (value==null||value==""){
+            //alert(alerttxt);
+            $(field).parent().prev().toggle(400);
+            return false
+        }else {
+            return true
+        }
+    }
+}
+
+function validate_form(thisform)
+{
+    with (thisform)
+    {
+        if (!validate_required(sentence)){
+            sentence.focus();
+            return false
+        }
+    }
+}

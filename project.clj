@@ -8,6 +8,8 @@
                  [http-kit "2.2.0"]
                  [ring/ring-core "1.5.0"]
                  [ring/ring-devel "1.5.0"]
+                 [ring/ring-json "0.4.0"]
+                 [clj-json "0.5.3"]
                  [hiccup "1.0.5"]
                  ;; https://mvnrepository.com/artifact/mysql/mysql-connector-java
                  ;[mysql/mysql-connector-java "5.1.6"]

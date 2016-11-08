@@ -66,7 +66,8 @@
      [:div.panel-body
       [:h2 "All my sentences"]
       [:a.btn.btn-primary.right.add-sentence-btn "Add"]
-      (form-to {:class "form-inline edit-box row"} [:post "/admin/create"]
+      (form-to {:class "form-inline edit-box row right" :onsubmit "return validate_form(this)"} [:post "/admin/create"]
+               (label {:class "control-label edit-box"} "sentence-tips" "<font color=\"red\">sentence shouldn't be empty.&nbsp;&nbsp;&nbsp;</font>")
                [:div.input-group
                 (text-field {:class "form-control" :placeholder "Type Sentence"} "sentence")
                 [:span.input-group-btn
