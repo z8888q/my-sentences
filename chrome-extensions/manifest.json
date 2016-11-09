@@ -1,0 +1,13 @@
+{
+  "name": "Save to Sentences",
+  "description": "Save to  Sentences and See it Anywhere.",
+  "version": "0.1",
+  "permissions": ["contextMenus"],
+  "background": {
+    "persistent": false,
+    "scripts": [
+      "jquery-3.1.0.min.js",
+      "sentence.js"]
+  },
+  "manifest_version": 2
+}
