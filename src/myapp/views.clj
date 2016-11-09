@@ -17,6 +17,7 @@
      (include-css "css/bootstrap-theme-3.3.7.min.css")
      (include-css "css/mystyle.css")
      (include-js "js/jquery-3.1.0.min.js")
+     (include-js "js/clipboard.min.js")
      (include-js "js/bootstrap-3.3.7.min.js")
      (include-js "js/my.js")
      ]
@@ -44,8 +45,9 @@
      [:div.panel-body
       [:small.text-muted.right (formatDate updated_at)]
       [:div
-       [:h4 sentence]]
+       [:h4.show-sentence sentence]]
       [:section.actions.right
+       [:a.copy-sentence {:data-clipboard-text sentence} "Copy"] " / "
        [:a.edit-posts "Edit"] " / "
        [:a {:href (str "/admin/" id "/delete")} "Delete"]]
       [:div.edit-box

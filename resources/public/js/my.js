@@ -15,7 +15,40 @@ $(document).ready(function() {
     $(".edit-title").on("input", function(){
          $(this).parents(".panel-body").first().find("h3").first().html($(this).val());
     });
+
+    //$(".copy-sentence").click(function (){
+    //    var sentence_text = $(this).parent().parent().find(".show-sentence").innerHTML;
+    //    window.prompt("Copy to clipboard: Ctrl+C, Enter", sentence_text);
+    //});
+    $(".copy-sentence").mouseleave(function (e){
+        e.currentTarget.setAttribute('class', 'copy-sentence');
+        e.currentTarget.innerHTML = "Copy";
+    });
+
 });
+
+window.onload = function() {
+    //your script here
+
+    var clipboard = new Clipboard('.copy-sentence');
+
+    clipboard.on('success', function(e) {
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+
+        e.clearSelection();
+
+        showTooltip(e.trigger,'Copied!');
+    });
+
+    clipboard.on('error', function(e) {
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+
+        showTooltip(e.trigger,fallbackMessage(e.action));
+    });
+}
 
 function validate_required(field)
 {
@@ -41,3 +74,24 @@ function validate_form(thisform)
         }
     }
 }
+
+function showTooltip(elem, msg) {
+    elem.setAttribute('class', 'copy-sentence tip');
+    elem.setAttribute('aria-label', msg);
+    elem.innerHTML = "Copied";
+}
+function fallbackMessage(action) {
+    var actionMsg = '';
+    var actionKey = (action === 'cut' ? 'X' : 'C');
+    if (/iPhone|iPad/i.test(navigator.userAgent)) {
+        actionMsg = 'No support :(';
+    }
+    else if (/Mac/i.test(navigator.userAgent)) {
+        actionMsg = 'Press ?-' + actionKey + ' to ' + action;
+    }
+    else {
+        actionMsg = 'Press Ctrl-' + actionKey + ' to ' + action;
+    }
+    return actionMsg;
+}
+

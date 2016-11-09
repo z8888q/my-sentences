@@ -13,3 +13,9 @@
     display: none;
     /*background-color: #122b40;*/
 }
+
+.tip {
+    color: red;
+}.tip:hover {
+    color: red;
+}
