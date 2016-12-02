@@ -28,7 +28,7 @@ function onClickHandler(info, tab) {
 function saveSentence(text, url, favIconUrl, isUrl) {
 
     $.ajax({
-        url: 'http://127.0.0.1:5000/save_sentence',
+        url: 'http://138.128.208.218:5000/save_sentence',
         type: 'POST',
         data: {'text': text,
             'url': url,
@@ -37,15 +37,26 @@ function saveSentence(text, url, favIconUrl, isUrl) {
         },
         dataType: 'json',
     }).then(function(data){
-        // 将正确信息返回content_script
-        // sendResponse({'status': 200});
         console.log("data:" + JSON.stringify(data));
-        alert("success:" + JSON.stringify(data))
+
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            lastTabId = tabs[0].id;
+            chrome.tabs.sendMessage(lastTabId, {
+                'data': data
+            }, function(response) {
+                console.log(response);
+            });
+        });
     }, function(e){
-        // 将错误信息返回content_script
-        // sendResponse({'status': 500});
         console.log("e:" + e);
-        alert("failed: " + e);
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            lastTabId = tabs[0].id;
+            chrome.tabs.sendMessage(lastTabId, {
+                'status': 500
+            }, function(response) {
+                console.log(response.farewell);
+            });
+        });
     });
 
 }
